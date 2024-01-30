@@ -3,51 +3,64 @@ function setupParticipants() {
     const participantsDiv = document.getElementById('participants');
     participantsDiv.innerHTML = '';
 
+    // 入力欄の説明
+    const participantLabelName = document.createElement('label');
+    participantLabelName.innerHTML = 'Name';
+
+    const participantLabelAmount = document.createElement('label');
+    participantLabelAmount.innerHTML = 'Amount';
+
+    participantsDiv.appendChild(participantLabelName);
+    participantsDiv.appendChild(participantLabelAmount);
+    participantsDiv.appendChild(document.createElement('br'));
+
     for (let i = 0; i < numPeople; i++) {
-        const participantLabel = document.createElement('label');
-        participantLabel.innerHTML = `Amount for Person ${i + 1}: `;
+        var participantInputName = document.createElement('input');
+        participantInputName.type = 'text';  // テキストボックスを作成
+        participantInputName.value = `Person ${i + 1}`; // Default Name
+        participantInputName.id = `name_${i}`; // Assign unique ID
         
-        const participantInput = document.createElement('input');
-        participantInput.type = 'number';
-        participantInput.min = '1';
-        participantInput.value = '10'; // Default amount
-        participantInput.id = `amount_${i}`; // Assign unique ID
+        var participantInputAmount = document.createElement('input');
+        participantInputAmount.type = 'number';
+        participantInputAmount.min = '1';
+        participantInputAmount.value = '10'; // Default amount
+        participantInputAmount.id = `amount_${i}`; // Assign unique ID
         
-        participantsDiv.appendChild(participantLabel);
-        participantsDiv.appendChild(participantInput);
+        participantsDiv.appendChild(participantInputName);
+        participantsDiv.appendChild(participantInputAmount);
         participantsDiv.appendChild(document.createElement('br'));
     }
 }
 
 function spinRoulette() {
     const numPeople = parseInt(document.getElementById('numPeople').value, 10);
-    const amounts = [];
+    const CumulativeTotalAmount = [];
+    var totalAmount = 0;
 
     for (let i = 0; i < numPeople; i++) {
-        const amount = parseInt(document.getElementById(`amount_${i}`).value, 10);
-        amounts.push(amount);
+        var amount = parseInt(document.getElementById(`amount_${i}`).value, 10);
+        totalAmount += amount; 
+        CumulativeTotalAmount.push(totalAmount);
     }
-
-    // Calculate the total amount
-    const totalAmount = amounts.reduce((total, amount) => total + amount, 0);
 
     // Generate a random number between 0 and 1
     const randomValue = Math.random();
 
     // Calculate the winning probability based on the total amount
-    const winningProbability = amounts.map(amount => amount / totalAmount);
+    const winningProbability = CumulativeTotalAmount.map(amount => amount / totalAmount);
 
     // Check if the random value is less than the winning probability
     const winnerIndex = winningProbability.findIndex(prob => randomValue < prob);
 
     if (winnerIndex !== -1) {
-        displayResult(`Person ${winnerIndex + 1} won!`);
+        var winnerName = document.getElementById(`name_${winnerIndex}`).value;
+        displayResult(`${winnerName} should pay!   ${totalAmount} yen!`);
     } else {
         displayResult('Sorry, no one won this time. Try again!');
     }
-    }
+}
 
-    function displayResult(message) {
+function displayResult(message) {
     document.getElementById('result').innerHTML = message;
 
     // Generate a random color for the roulette display
