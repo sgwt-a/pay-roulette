@@ -10,20 +10,43 @@
 
   <h1 class="title">Pay-Roulette</h1>
 
-  <h6>version 0.0.1</h6>
+  <h6>version 0.1.1</h6>
 
   <label for="numPeople">Number of People:</label>
-  <input type="number" id="numPeople" min="1" value="1"><br>
+  <input type="number" id="numPeople" min="1" value="1">
+  
+  <br>
+  <br>
   
   <button onclick="setupParticipants()">Setup Participants</button>
+  
+  <br>
   
   <div id="participants" class="participant-section">
     <!-- Participant input fields will be added dynamically here -->
   </div>
+  
+  <br>
+
+
+  <button onclick="calcWinProbability()">Next</button>
+
+  <div id="calcWinProb" class="calcWinProb-section">
+    <!-- Win probability display fields will be added dynamically here -->
+  </div>
+  
+  <br>
+
 
   <button onclick="spinRoulette()">Spin Roulette</button>
+  
+  <br>
+  <br>
 
   <div id="result"></div>
+  
+  <br>
+
   <div id="roulette"></div>
   
   <script src="script.js"></script>
