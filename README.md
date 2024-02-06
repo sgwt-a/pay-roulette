@@ -15,3 +15,8 @@
 
 ということで、そんな悩みをPay-Rouletteが解決いたします。
 
+## アプリ公開情報
+
+こちらからアクセス可能です！！  
+https://sgwt-a.github.io/pay-roulette/
+
