@@ -99,9 +99,9 @@ function spinRoulette(winningProbability) {
 
     if (winnerIndex !== -1) {
         var winnerName = document.getElementById(`name_${winnerIndex}`).value;
-        displayResult(`${winnerName} should pay ${totalAmount} yen! (試行回数: ${trialCount})`);
+        displayResult(`${winnerName} should pay ${totalAmount} yen!\n(試行回数: ${trialCount})`);
     } else {
-        displayResult(`Sorry, no one won this time. Try again! (試行回数: ${trialCount})`);
+        displayResult(`Sorry, no one won this time. Try again!\n(試行回数: ${trialCount})`);
     }
 
 }
