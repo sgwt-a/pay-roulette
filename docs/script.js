@@ -1,3 +1,5 @@
+let trialCount = 0;
+
 function setupParticipants() {
 
     const numPeople = parseInt(document.getElementById('numPeople').value, 10);
@@ -76,6 +78,7 @@ function calcWinProbability() {
 
 function spinRoulette(winningProbability) {
 
+    trialCount++;
     const numPeople = parseInt(document.getElementById('numPeople').value, 10);
     const cumulativeTotalAmount = [];
     var totalAmount = 0;
@@ -96,9 +99,9 @@ function spinRoulette(winningProbability) {
 
     if (winnerIndex !== -1) {
         var winnerName = document.getElementById(`name_${winnerIndex}`).value;
-        displayResult(`${winnerName} should pay!  ${totalAmount} yen!`);
+        displayResult(`${winnerName} should pay ${totalAmount} yen!\n(試行回数: ${trialCount})`);
     } else {
-        displayResult('Sorry, no one won this time. Try again!');
+        displayResult(`Sorry, no one won this time. Try again!\n(試行回数: ${trialCount})`);
     }
 
 }
